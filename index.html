@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101d35">
+  <title>Physics 12 — Class 12 Study Hub</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#"><span class="brand-mark">∑</span><span>PHYSICS <b>12</b><small>CLASS 12 STUDY HUB</small></span></a>
+  <nav><a href="#library">Library</a><button class="admin-link" id="adminOpen">Admin login</button></nav>
+</header>
+<main>
+  <section class="hero">
+    <div class="hero-copy"><span class="eyebrow">YOUR CLASS 12 PHYSICS COMPANION</span>
+      <h1>Understand the concepts.<br><em>Master the formulas.</em></h1>
+      <p>Chapter-wise derivations and formula sheets, all in one simple place.</p>
+      <a class="primary-btn" href="#library">Explore study material <span>↗</span></a>
+    </div>
+    <div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="core">E = mc²</div><span class="float f1">∫</span><span class="float f2">⚡</span><span class="float f3">λ</span></div>
+  </section>
+  <section class="library" id="library">
+    <div class="section-heading"><div><span class="eyebrow">THE STUDY LIBRARY</span><h2>Pick your subject</h2></div><span class="live-note"><i></i> Chapter-wise resources</span></div>
+    <div class="tabs" role="tablist"><button class="tab active" data-kind="derivations">↗ <span>Derivations</span></button><button class="tab" data-kind="formulas">∑ <span>Formulas</span></button></div>
+    <div class="toolbar"><label class="search"><span>⌕</span><input id="searchInput" type="search" placeholder="Search chapters or topics..."></label><span id="resourceCount" class="count"></span></div>
+    <div id="chapterGrid" class="chapter-grid"></div>
+    <div id="emptyState" class="empty hidden">No matching chapters or topics. Try another search.</div>
+  </section>
+</main>
+<footer><span>PHYSICS 12</span><span>Made for focused learning · Class XII</span></footer>
+
+<div class="modal-backdrop hidden" id="adminModal">
+  <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="close" id="adminClose" aria-label="Close">×</button>
+    <div id="loginView">
+      <span class="eyebrow">RESTRICTED AREA</span><h2 id="modalTitle">Admin access</h2>
+      <p class="muted">Sign in with the admin account configured in your Supabase project.</p>
+      <form id="loginForm"><label>Email<input id="adminEmail" type="email" required autocomplete="username"></label><label>Password<input id="adminPassword" type="password" required autocomplete="current-password"></label><button class="primary-btn full" type="submit">Sign in</button><p id="loginMessage" class="form-message"></p></form>
+    </div>
+    <div id="dashboardView" class="hidden">
+      <span class="eyebrow">CONTENT MANAGEMENT</span><h2>Manage resources</h2>
+      <p class="muted">Add a topic and its shareable Google Drive PDF link. Anyone with the link can view the PDF.</p>
+      <form id="resourceForm">
+        <label>Section<select id="resourceKind"><option value="derivations">Derivations</option><option value="formulas">Formulas</option></select></label>
+        <label>Chapter<select id="resourceChapter"></select></label>
+        <label>Topic name<input id="topicTitle" required maxlength="100" placeholder="e.g. Electric field on axial line"></label>
+        <label>Google Drive link<input id="driveUrl" type="url" required placeholder="https://drive.google.com/file/d/.../view"></label>
+        <button class="primary-btn full" type="submit">＋ Add topic</button><p id="resourceMessage" class="form-message"></p>
+      </form>
+      <div class="admin-bottom"><span id="adminEmailLabel"></span><button id="logoutBtn" class="text-btn">Sign out</button></div>
+      <div class="admin-resources"><h3>Existing topics</h3><div id="adminResourceList"></div></div>
+    </div>
+    <div id="configView" class="hidden"><span class="eyebrow">ONE-TIME SETUP</span><h2>Connect your content database</h2><p class="muted">Add your Supabase project URL and publishable/anon key in <code>config.js</code>, then reload this page. Follow SETUP.md.</p></div>
+  </section>
+</div>
+<script src="config.js"></script><script src="app.js"></script>
+</body></html>
