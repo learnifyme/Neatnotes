@@ -5,7 +5,9 @@ const CHAPTERS = [
 ];
 const cfg=window.PHYSICS_CONFIG||{};
 const configured=cfg.SUPABASE_URL&&!cfg.SUPABASE_URL.startsWith("YOUR_")&&cfg.SUPABASE_ANON_KEY&&!cfg.SUPABASE_ANON_KEY.startsWith("YOUR_");
-const db=configured?window.supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY):null;
+const db=configured&&window.supabase
+  ? window.supabase.createClient(cfg.SUPABASE_URL,cfg.SUPABASE_ANON_KEY)
+  : null;;
 let activeKind="derivations",resources=[],session=null;
 const $=id=>document.getElementById(id);
 function safeDriveUrl(raw){
